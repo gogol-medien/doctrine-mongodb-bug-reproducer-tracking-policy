@@ -24,8 +24,8 @@ class TestReproduceCommand
         /** @var WithExplicitTracking $explicit */
         $explicit = $this->dm->getRepository(WithExplicitTracking::class)->findOneBy([]);
 
-        $implicit->setEmbeds();
-        $explicit->setEmbeds();
+        $implicit->setEmbeds()->setMyProperty('Modified Implicit Property');
+        $explicit->setEmbeds()->setMyProperty('Modified Explicit Property');
 
         $this->dm->flush();
 

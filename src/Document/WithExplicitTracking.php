@@ -14,6 +14,9 @@ class WithExplicitTracking
     #[ODM\Id]
     protected ?string $id = null;
 
+    #[ODM\Field]
+    protected ?string $myProperty = null;
+
     #[ODM\EmbedMany(targetDocument: MyEmbed::class)]
     protected Collection $embeds;
 
@@ -25,6 +28,18 @@ class WithExplicitTracking
     public function __construct()
     {
         $this->embeds = new ArrayCollection();
+    }
+
+    public function getMyProperty(): ?string
+    {
+        return $this->myProperty;
+    }
+
+    public function setMyProperty(?string $myProperty): self
+    {
+        $this->myProperty = $myProperty;
+
+        return $this;
     }
 
     public function setEmbeds(MyEmbed ...$embeds): self

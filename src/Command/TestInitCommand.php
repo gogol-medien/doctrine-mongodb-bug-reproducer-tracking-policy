@@ -42,10 +42,16 @@ class TestInitCommand
 
         $io->info('Creating test data.');
 
-        $implicit = (new WithImplicitTracking())->setEmbeds((new MyEmbed())->setMyEmbeddedValue('Implicit Embedded Value'));
+        $implicit = (new WithImplicitTracking())
+            ->setMyProperty('Implicit Property')
+            ->setEmbeds((new MyEmbed())->setMyEmbeddedValue('Implicit Embedded Value'))
+        ;
         $this->dm->persist($implicit);
 
-        $explicit = (new WithExplicitTracking())->setEmbeds((new MyEmbed())->setMyEmbeddedValue('Explicit Embedded Value'));
+        $explicit = (new WithExplicitTracking())
+            ->setMyProperty('Explicit Property')
+            ->setEmbeds((new MyEmbed())->setMyEmbeddedValue('Explicit Embedded Value'))
+        ;
         $this->dm->persist($explicit);
 
         $this->dm->flush();
